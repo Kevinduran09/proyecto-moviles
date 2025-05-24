@@ -1,2 +1,29 @@
+@import "tailwindcss";
+
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+
+/* Gradientes lineales */
+.gradient-primary {
+    background: linear-gradient(180deg, #4CAF50, #8BC34A);
+}
+
+.gradient-secondary {
+    background: linear-gradient(45deg, var(--ion-color-secondary), var(--ion-color-tertiary));
+}
+
+.gradient-dark {
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+}
+
+.gradient-light {
+    background: linear-gradient(45deg, #f6f9fc, #e9ecef);
+}
+
+/* Clase para texto con gradiente */
+.text-gradient {
+    background: linear-gradient(45deg, var(--ion-color-primary), var(--ion-color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}

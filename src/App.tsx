@@ -10,11 +10,12 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-
+import { home, camera, map, time, person } from 'ionicons/icons';
+import HomeScreen from './screens/HomeScreen';
+import CameraScreen from './screens/CameraScreen';
+import MapScreen from './screens/MapScreen';
+import HistoryScreen from './screens/HistoryScreen';
+import ProfileScreen from './screens/ProfileScreen';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -40,43 +41,71 @@ import '@ionic/react/css/display.css';
 
 /* import '@ionic/react/css/palettes/dark.always.css'; */
 /* import '@ionic/react/css/palettes/dark.class.css'; */
-import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 setupIonicReact();
+// Configurar StatusBar
+const initializeStatusBar = async () => {
+  try {
+    await StatusBar.setStyle({ style: Style.Light });
+    await StatusBar.setBackgroundColor({ color: '#ffffff' });
+    await StatusBar.show();
+    await StatusBar.setOverlaysWebView({ overlay: false });
+  } catch (error) {
+    console.error('Error al configurar StatusBar:', error);
+  }
+};
+
+// Inicializar StatusBar
+initializeStatusBar();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/home">
+            <HomeScreen />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/camera">
+            <CameraScreen />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route exact path="/map">
+            <MapScreen />
+          </Route>
+          <Route exact path="/history">
+            <HistoryScreen />
+          </Route>
+          <Route exact path="/profile">
+            <ProfileScreen />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon aria-hidden="true" icon={home} />
+            <IonLabel>Inicio</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="camera" href="/camera">
+            <IonIcon aria-hidden="true" icon={camera} />
+            <IonLabel>Cámara</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="map" href="/map">
+            <IonIcon aria-hidden="true" icon={map} />
+            <IonLabel>Mapa</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="history" href="/history">
+            <IonIcon aria-hidden="true" icon={time} />
+            <IonLabel>Historial</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="profile" href="/profile">
+            <IonIcon aria-hidden="true" icon={person} />
+            <IonLabel>Perfil</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

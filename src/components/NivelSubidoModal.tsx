@@ -1,0 +1,54 @@
+import React, { useEffect } from 'react';
+import { IonModal, IonButton } from '@ionic/react';
+import confetti from 'canvas-confetti';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { Howl } from 'howler';
+import Lottie from 'lottie-react';
+import celebration from '../animations/celebration.json'
+interface Props {
+    show: boolean;
+    nivel: number;
+    onClose: () => void;
+}
+
+const NivelSubidoModal: React.FC<Props> = ({ show, nivel, onClose }) => {
+
+    useEffect(() => {
+        if (show) {
+            lanzarConfetti();
+            vibrar();
+            reproducirSonido();
+        }
+    }, [show])
+
+    const lanzarConfetti = () => {
+        confetti({
+            particleCount: 100,
+            spread: 90,
+            origin: {
+                y: 0.6
+            }
+        })
+    }
+    const vibrar = async () => {
+        await Haptics.impact({ style: ImpactStyle.Heavy })
+    }
+    const reproducirSonido = async () => {
+        const sound = new Howl({
+            src: ['/level-up.mp3']
+        })
+        sound.play()
+    }
+    return (
+        <IonModal isOpen={show} onDidDismiss={onClose}>
+            <div style={{ textAlign: 'center', padding: '2rem' }}>
+                <h2>🎉 Nivel {nivel} alcanzado!</h2>
+                <Lottie animationData={celebration} loop={true} />
+                <p>¡Sigue reciclando para llegar al siguiente nivel!</p>
+                <IonButton onClick={onClose}>Continuar</IonButton>
+            </div>
+        </IonModal >
+    )
+}
+
+export default NivelSubidoModal;
