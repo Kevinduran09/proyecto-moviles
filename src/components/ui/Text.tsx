@@ -2,7 +2,7 @@ import React from 'react';
 
 interface TextProps {
     children: React.ReactNode;
-    size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+    size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl';
     weight?: 'normal' | 'medium' | 'semibold' | 'bold';
     color?: 'primary' | 'secondary' | 'white' | 'black' | 'gray';
     className?: string;
@@ -20,7 +20,8 @@ const Text: React.FC<TextProps> = ({
         sm: 'text-sm',
         base: 'text-base',
         lg: 'text-lg',
-        xl: 'text-xl'
+        xl: 'text-xl',
+        '2xl': 'text-2xl'
     };
 
     const weightClasses = {

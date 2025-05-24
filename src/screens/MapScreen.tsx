@@ -16,7 +16,11 @@ const MapScreen: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <div className="map-container" style={{ width: '100%', height: '100%' }}>
-          {/* Aquí irá la implementación del mapa */}
+          {[1,2,3,4,45,5,6,7,788,].map((num)=>(
+            <div key={num} className='w-full h-full bg-red-500'>
+              <h1>Mapa</h1>
+            </div>
+          ))}
         </div>
       </IonContent>
     </IonPage>

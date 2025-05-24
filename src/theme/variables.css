@@ -27,3 +27,31 @@ http://ionicframework.com/docs/theming/ */
     background-clip: text;
     color: transparent;
 }
+
+ion-tab-button.tab-selected {
+    --color: #2e7d32;
+    /* verde oscuro o tu color deseado */
+
+    /* para que tenga bordes redondeados */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Rellenar el icono cuando está activo */
+ion-tab-button.tab-selected ion-icon {
+    --color: #2e7d32 !important;
+    color: #2e7d32 !important;
+    stroke: #2e7d32 !important;
+    stroke-width: 0 !important;
+    scale: 1.5;
+    margin-bottom: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+ion-tab-button.tab-selected ion-icon::part(native) {
+    --color: #2e7d32 !important;
+    color: #2e7d32 !important;
+}
+
+ion-tab-button.tab-selected ion-label {
+    display: none;
+}

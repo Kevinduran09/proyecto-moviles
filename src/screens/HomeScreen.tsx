@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonTitle, IonText } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import { useState } from 'react';
 import '../theme/variables.css';
 import LevelProgress from '../components/LevelProgress';
@@ -8,11 +8,27 @@ import StreakCard from '../components/StreakCard';
 import StatsCard from '../components/StatsCard';
 import TodayProgress from '../components/TodayProgress';
 import QuickActions from '../components/QuickActions';
-const Tab1: React.FC = () => {
+import Title from '../components/ui/Title';
+import Text from '../components/ui/Text';
+import Container from '../components/ui/Container';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Link } from 'react-router-dom';
+const initializeStatusBar = async () => {
+    try {
+        await StatusBar.setStyle({ style: Style.Light });
+        await StatusBar.setBackgroundColor({ color: '#4CAF50' });
+        await StatusBar.show();
+        await StatusBar.setOverlaysWebView({ overlay: false });
+    } catch (error) {
+        console.error('Error al configurar StatusBar:', error);
+    }
+};
+
+// Inicializar StatusBar
+initializeStatusBar();
+const HomeScreen: React.FC = () => {
     const { stats, achievements } = data.data;
-
     const [todayItems] = useState([2, 3, 4]);
-
 
     const getGreeting = () => {
         const hour = new Date().getHours();
@@ -20,6 +36,7 @@ const Tab1: React.FC = () => {
         if (hour < 18) return '¡Buenas tardes!';
         return '¡Buenas noches!';
     };
+
     const getMotivationalMessage = () => {
         if (todayItems.length === 0) {
             return '¡Comienza tu día reciclando algo! 🌱';
@@ -29,55 +46,57 @@ const Tab1: React.FC = () => {
         }
         return '¡Increíble! Ya cumpliste tu meta diaria 🎉';
     };
+
     return (
         <IonPage>
             <IonContent fullscreen>
                 <div className="gradient-primary flex-1">
-                    <div className="flex-1 pt-6 px-6">
+                    <Container padding="sm" className="pt-6 space-y-5">
                         {/* Header */}
                         <div className='flex justify-between items-center mb-5'>
                             <div className='space-y-1'>
-                                <IonTitle className='text-white text-2xl font-bold'>
+                                <Title variant="h2" color="white">
                                     {getGreeting()}, Jose!
-                                </IonTitle>
-                                <IonText className='text-white text-md'>
-                                    <p>
-                                        Reciclador Nivel 1
-                                    </p>
-                                </IonText>
+                                </Title>
+                                <Text size="base" color="white">
+                                    Reciclador Nivel 1
+                                </Text>
                             </div>
                             <div className='bg-white rounded-full size-15 flex items-center justify-center'>
-                                <span className='text-black text-2xl font-bold'>1</span>
+                                <Link to="/profile">
+                                    <Text size="xl" weight="bold" color="black">1</Text>
+                                </Link>
                             </div>
                         </div>
 
                         {/* Progress level */}
-                        <LevelProgress stats={stats} />
+                        <div>
+                            <LevelProgress stats={stats} />
+                        </div>
 
                         {/* Motivational Message */}
-                        <Card>
-
-                            <div className='flex justify-center items-center font-[600] text-gray-800/90'>
-                                <span className='text-md'>
+                        <div>
+                            <Card className='!py-6'>
+                                <Text size="base" weight="semibold" color="black" className="text-center">
                                     {getMotivationalMessage()}
-                                </span>
-                            </div>
-                        </Card>
-
+                                </Text>
+                            </Card>
+                        </div>
 
                         {/* Daily Goals */}
                         <div className='flex flex-row justify-stretch gap-5'>
                             <StreakCard streak={stats.currentStreak} />
                             <StatsCard title='Logros' value={`${stats.unlockedAchievements}/${achievements.length}`} />
                         </div>
-                        {/* progress today */}
+
+                        {/* Progress today */}
                         <TodayProgress items={todayItems} />
                         <QuickActions />
-                    </div>
+                    </Container>
                 </div>
             </IonContent>
         </IonPage>
     );
 };
 
-export default Tab1;
+export default HomeScreen;

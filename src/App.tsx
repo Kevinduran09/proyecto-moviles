@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, camera, map, time, person } from 'ionicons/icons';
+import { home, camera, map, time, person, homeOutline, cameraOutline, mapOutline, timeOutline, personOutline } from 'ionicons/icons';
 import HomeScreen from './screens/HomeScreen';
 import CameraScreen from './screens/CameraScreen';
 import MapScreen from './screens/MapScreen';
@@ -46,12 +46,13 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
+import { CustomTabBar } from './CustomTabBar';
 setupIonicReact();
 // Configurar StatusBar
 const initializeStatusBar = async () => {
   try {
     await StatusBar.setStyle({ style: Style.Light });
-    await StatusBar.setBackgroundColor({ color: '#ffffff' });
+    await StatusBar.setBackgroundColor({ color: '#4CAF50' });
     await StatusBar.show();
     await StatusBar.setOverlaysWebView({ overlay: false });
   } catch (error) {
@@ -86,28 +87,7 @@ const App: React.FC = () => (
             <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Inicio</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="camera" href="/camera">
-            <IonIcon aria-hidden="true" icon={camera} />
-            <IonLabel>Cámara</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="map" href="/map">
-            <IonIcon aria-hidden="true" icon={map} />
-            <IonLabel>Mapa</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="history" href="/history">
-            <IonIcon aria-hidden="true" icon={time} />
-            <IonLabel>Historial</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="profile" href="/profile">
-            <IonIcon aria-hidden="true" icon={person} />
-            <IonLabel>Perfil</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+        <CustomTabBar />
       </IonTabs>
     </IonReactRouter>
   </IonApp>

@@ -2,14 +2,15 @@ import React, { ReactNode } from 'react'
 
 interface CardProps {
   children: ReactNode;
+  className?: string;
 }
-
-const Card: React.FC<CardProps> = ({ children }) => {
+const Card: React.FC<CardProps> = ({ children, className = "" }) => {
   return (
-    <div className='flex-1 bg-white text-black p-5 rounded-2xl shadow-lg mb-5'>
-        {children}
+    <div className={`${className} flex-1 bg-white text-black rounded-2xl shadow-lg mb-3`}>
+      {children}
     </div>
   )
 }
+
 
 export default Card
