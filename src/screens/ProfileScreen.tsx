@@ -6,6 +6,7 @@ import Title from '../components/ui/Title';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import ProfileStadistics from '../components/ProfileStadistics';
 import { useHistory } from 'react-router';
+import Avatar from '../components/Avatar';
 const initializeStatusBar = async () => {
   try {
     await StatusBar.setStyle({ style: Style.Light });
@@ -52,18 +53,12 @@ const ProfileScreen: React.FC = () => {
 
             <div className="flex flex-col items-center h-full py-5 px-4 ">
               {/* Imagen de perfil con borde degradado */}
-              <div className="relative bg-gradient-to-tr from-green-400 to-green-700 p-1 rounded-full shadow-lg">
-                <div className="w-28 h-28 rounded-full bg-white flex items-center justify-center overflow-hidden">
-                  <img src={user.imagen} alt="Foto de perfil" className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute -right-2 -bottom-2 size-12 rounded-full bg-white shadow-xl flex items-center justify-center -mt-8 mb-2 border-4 border-green-400">
-                  <span className="text-3xl font-bold text-green-600">{user.nivel}</span>
-                </div>
-              </div>
+              <Avatar size={120}/>
 
               {/* Nombre y título */}
               <h2 className='!text-3xl text-white font-bold'>{user.nombre}</h2>
-              <span className="bg-green-600/80 text-white text-sm px-4 py-1 rounded-full font-semibold mt-1 mb-2 shadow"> {user.titulo} </span>
+              
+              <span className="effect-shimmer relative overflow-hidden bg-green-600/80 text-white text-sm px-4 py-1 rounded-full font-semibold mt-1 mb-2 shadow"> {user.titulo} </span>
               <p className="text-white/80 mb-2">Nivel {user.nivel}</p>
 
 

@@ -13,6 +13,7 @@ import Text from '../components/ui/Text';
 import Container from '../components/ui/Container';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Link } from 'react-router-dom';
+import Avatar from '../components/Avatar';
 const initializeStatusBar = async () => {
     try {
         await StatusBar.setStyle({ style: Style.Light });
@@ -48,7 +49,7 @@ const HomeScreen: React.FC = () => {
     };
 
     return (
-        <IonPage>
+        <IonPage >
             <IonContent fullscreen>
                 <div className="gradient-primary flex-1">
                     <Container padding="sm" className="pt-6 space-y-5">
@@ -64,7 +65,7 @@ const HomeScreen: React.FC = () => {
                             </div>
                             <div className='bg-white rounded-full size-15 flex items-center justify-center'>
                                 <Link to="/profile">
-                                    <Text size="xl" weight="bold" color="black">1</Text>
+                                    <Avatar size={56}  />
                                 </Link>
                             </div>
                         </div>

@@ -5,53 +5,101 @@ http://ionicframework.com/docs/theming/ */
 
 /* Gradientes lineales */
 .gradient-primary {
-    background: linear-gradient(180deg, #4CAF50, #8BC34A);
+  background: linear-gradient(180deg, #4caf50, #8bc34a);
 }
 
 .gradient-secondary {
-    background: linear-gradient(45deg, var(--ion-color-secondary), var(--ion-color-tertiary));
+  background: linear-gradient(
+    45deg,
+    var(--ion-color-secondary),
+    var(--ion-color-tertiary)
+  );
 }
-
+.custom-tabbar {
+    overflow: visible !important;
+    position: relative; /* necesario para que el botón flotante se posicione bien */
+    z-index: 99;
+  }
 .gradient-dark {
-    background: linear-gradient(45deg, #2c3e50, #3498db);
+  background: linear-gradient(45deg, #2c3e50, #3498db);
 }
 
 .gradient-light {
-    background: linear-gradient(45deg, #f6f9fc, #e9ecef);
+  background: linear-gradient(45deg, #f6f9fc, #e9ecef);
 }
 
 /* Clase para texto con gradiente */
 .text-gradient {
-    background: linear-gradient(45deg, var(--ion-color-primary), var(--ion-color-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  background: linear-gradient(
+    45deg,
+    var(--ion-color-primary),
+    var(--ion-color-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 ion-tab-button.tab-selected {
-    --color: #2e7d32;
-    /* verde oscuro o tu color deseado */
+  --color: #2e7d32;
+  /* verde oscuro o tu color deseado */
 
-    /* para que tenga bordes redondeados */
-    transition: all 0.3s ease-in-out;
+  /* para que tenga bordes redondeados */
+  transition: all 0.3s ease-in-out;
 }
 
 /* Rellenar el icono cuando está activo */
 ion-tab-button.tab-selected ion-icon {
-    --color: #2e7d32 !important;
-    color: #2e7d32 !important;
-    stroke: #2e7d32 !important;
-    stroke-width: 0 !important;
-    scale: 1.5;
-    margin-bottom: 10px;
-    transition: all 0.3s ease-in-out;
+  --color: #2e7d32 !important;
+  color: #2e7d32 !important;
+  stroke: #2e7d32 !important;
+  stroke-width: 0 !important;
+  scale: 1.5;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 ion-tab-button.tab-selected ion-icon::part(native) {
-    --color: #2e7d32 !important;
-    color: #2e7d32 !important;
+  --color: #2e7d32 !important;
+  color: #2e7d32 !important;
 }
 
 ion-tab-button.tab-selected ion-label {
-    display: none;
+  display: none;
+}
+
+.effect-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 120%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer 4s infinite;
+  pointer-events: none;
+  border-radius: 16px;
+  z-index: 2;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0 30px rgba(247, 247, 247, 0.64) inset !important;
+    -webkit-text-fill-color: rgb(58, 55, 55) !important;
+}
+@keyframes shimmer {
+  0% {
+    left: -75%;
+  }
+
+  100% {
+    left: 125%;
+  }
 }

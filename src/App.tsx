@@ -1,21 +1,10 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, camera, map, time, person, homeOutline, cameraOutline, mapOutline, timeOutline, personOutline } from 'ionicons/icons';
-import HomeScreen from './screens/HomeScreen';
 import CameraScreen from './screens/CameraScreen';
-import MapScreen from './screens/MapScreen';
-import HistoryScreen from './screens/HistoryScreen';
-import ProfileScreen from './screens/ProfileScreen';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -44,51 +33,19 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { StatusBar, Style } from '@capacitor/status-bar';
 
-import { CustomTabBar } from './CustomTabBar';
+
+import TabLayout from './screens/TabLayout';
+import LoginScreen from './screens/LoginScreen';
 setupIonicReact();
 // Configurar StatusBar
-const initializeStatusBar = async () => {
-  try {
-    await StatusBar.setStyle({ style: Style.Light });
-    await StatusBar.setBackgroundColor({ color: '#4CAF50' });
-    await StatusBar.show();
-    await StatusBar.setOverlaysWebView({ overlay: false });
-  } catch (error) {
-    console.error('Error al configurar StatusBar:', error);
-  }
-};
-
-// Inicializar StatusBar
-initializeStatusBar();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <HomeScreen />
-          </Route>
-          <Route exact path="/camera">
-            <CameraScreen />
-          </Route>
-          <Route exact path="/map">
-            <MapScreen />
-          </Route>
-          <Route exact path="/history">
-            <HistoryScreen />
-          </Route>
-          <Route exact path="/profile">
-            <ProfileScreen />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <CustomTabBar />
-      </IonTabs>
+      <Route path={'/'} render={() => <TabLayout />} />
+      <Route path={'/camera'} exact render={() => <CameraScreen />} />
+      <Route path={'/login'} exact render={() => <LoginScreen />} />
     </IonReactRouter>
   </IonApp>
 );

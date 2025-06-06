@@ -1,5 +1,10 @@
 {
     "data": {
+        "user": {
+        
+                "nombre": "Kevin López",
+                "imagen": "https://randomuser.me/api/portraits/men/32.jpg"
+        },
         "todayItems": [
             {
                 "id": 1,

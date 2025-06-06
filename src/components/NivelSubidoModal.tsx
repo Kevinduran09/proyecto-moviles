@@ -9,9 +9,10 @@ interface Props {
     show: boolean;
     nivel: number;
     onClose: () => void;
+    url?: string | null;
 }
 
-const NivelSubidoModal: React.FC<Props> = ({ show, nivel, onClose }) => {
+const NivelSubidoModal: React.FC<Props> = ({ show, nivel, onClose, url = null }) => {
 
     useEffect(() => {
         if (show) {
@@ -42,9 +43,22 @@ const NivelSubidoModal: React.FC<Props> = ({ show, nivel, onClose }) => {
     return (
         <IonModal isOpen={show} onDidDismiss={onClose}>
             <div style={{ textAlign: 'center', padding: '2rem' }}>
-                <h2>🎉 Nivel {nivel} alcanzado!</h2>
-                <Lottie animationData={celebration} loop={true} />
-                <p>¡Sigue reciclando para llegar al siguiente nivel!</p>
+                {
+                    url ?
+                        (
+                            <div className='flex flex-col items-center mb-24'>
+                                <img src={url} alt="avatar" className="size-72 bg-white flex items-center justify-center overflow-hidden rounded-full" />
+                            </div>
+                        ) : (
+                            <>
+                                <h2>🎉 Nivel {nivel} alcanzado!</h2>
+                                <Lottie animationData={celebration} loop={true} />
+                                <p>¡Sigue reciclando para llegar al siguiente nivel!</p>
+
+                            </>
+                        )
+
+                }
                 <IonButton onClick={onClose}>Continuar</IonButton>
             </div>
         </IonModal >
