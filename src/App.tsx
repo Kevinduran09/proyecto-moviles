@@ -38,7 +38,8 @@ import './theme/variables.css';
 import TabLayout from './screens/TabLayout';
 import LoginScreen from './screens/LoginScreen';
 setupIonicReact();
-// Configurar StatusBar
+// Configurar 
+
 
 const App: React.FC = () => (
   <IonApp>
