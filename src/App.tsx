@@ -52,6 +52,7 @@ const App: React.FC = () => (
 
         {/* Rutas protegidas */}
         <PrivateRoute path="/" component={TabLayout} />
+        <PrivateRoute path="/camera" exact component={CameraScreen} />
 
       </IonReactRouter>
     </AuthProvider>
