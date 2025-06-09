@@ -37,18 +37,26 @@ import './theme/variables.css';
 
 import TabLayout from './screens/TabLayout';
 import LoginScreen from './screens/LoginScreen';
+import { AuthProvider } from './contexts/authContext';
+import PrivateRoute from './components/rutasRedireccion/rutasPrivadas';
 setupIonicReact();
 // Configurar 
 
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <Route path={'/'} render={() => <TabLayout />} />
-      <Route path={'/camera'} exact render={() => <CameraScreen />} />
-      <Route path={'/login'} exact render={() => <LoginScreen />} />
-    </IonReactRouter>
+    <AuthProvider>
+      <IonReactRouter>
+        {/* Ruta publica */}
+        <Route path="/login" exact render={() => <LoginScreen />} />
+
+        {/* Rutas protegidas */}
+        <PrivateRoute path="/" component={TabLayout} />
+
+      </IonReactRouter>
+    </AuthProvider>
   </IonApp>
 );
+
 
 export default App;
