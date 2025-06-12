@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'Proyecto Moviles',
+  appId: 'com.proyecto1.una',
+  appName: 'proyecto1-una',
   webDir: 'dist',
   plugins:{
     Camera:{

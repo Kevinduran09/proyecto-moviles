@@ -201,7 +201,7 @@ const CameraScreen: React.FC = () => {
             <div className="absolute w-8 h-8 border-b-4 border-l-4 border-green-600 rounded-bl-lg bottom-0 left-0"></div>
             <div className="absolute w-8 h-8 border-b-4 border-r-4 border-green-600 rounded-br-lg bottom-0 right-0"></div>
           </div>
-          <div className="absolute w-full  bg-black/80 rounded-md -bottom-4 left-1/2 -translate-x-1/2 ">
+          <div className="absolute w-full  bg-black/80 rounded-md -bottom-4 left-1/2 -translate-x-1/2 top-[277px]">
             <p className="text-white text-center text-sm ">Centra el objeto y toca el boton para escanearlo</p>
           </div>
         </div>

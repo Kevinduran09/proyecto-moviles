@@ -14,6 +14,8 @@ const firebaseConfig: FirebaseOptions = {
 
 const app = initializeApp(firebaseConfig);
 
+console.log("Firebase inicializado:", app.name);
+
 const auth = getAuth(app)
 
 const db = getFirestore(app)
