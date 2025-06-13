@@ -4,9 +4,8 @@ import LoginForm from '../components/LoginForm'
 import RegisterForm from '../components/RegisterForm'
 import Title from '../components/ui/Title'
 import Text from '../components/ui/Text'
-import Google from '../components/icons/Google'
 import Facebook from '../components/icons/Facebook'
-
+import HandleGoogleSignIn from '../components/firebase/authentication'
 const LoginScreen = () => {
     const [toogleForm, setToogleForm] = React.useState(false)
     const [formType, setFormType] = React.useState('login')
@@ -20,9 +19,16 @@ const LoginScreen = () => {
             <IonContent fullscreen>
                 <div className='flex flex-col justify-center items-center h-screen'>
                     <div className="space-y-4 w-full px-12">
-                        <div className='text-center mb-12'>
-                            <Title variant='h1' color='black' className='!font-bold '>Iniciar Sesión</Title>
-                            <Text className='text-zinc-800/80'>¿No tienes cuenta? <button className='text-black underline' onClick={handleToogleForm}>Registrate</button></Text>
+                        <div className="text-center mb-12">
+                            <Title variant="h1" color="black" className="!font-bold ">
+                                {formType === "login" ? "Iniciar Sesión" : "Registro"}
+                            </Title>
+                            <Text className="text-zinc-800/80">
+                                {formType === "login" ? "¿No tienes cuenta? " : "¿Ya tienes una cuenta? "}
+                                <button className="text-black underline" onClick={handleToogleForm}>
+                                    {formType === "login" ? "Registrate" : "Inicia sesión"}
+                                </button>
+                            </Text>
                         </div>
 
 
@@ -44,13 +50,7 @@ const LoginScreen = () => {
                         </div>
 
                         {/* Google */}
-                        <button
-
-                            className="bg-white text-black !border-1 !border-zinc-300 w-full !py-2 !rounded-lg flex justify-center items-center gap-3 hover:bg-gray-300/30 transition-all duration-300  font-medium"
-                        >
-                            <Google className='size-6' />
-                            Confinuar con Google
-                        </button>
+                        <HandleGoogleSignIn />
 
                         {/* Facebook */}
                         <button

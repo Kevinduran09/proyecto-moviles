@@ -3,6 +3,7 @@ import Title from './ui/Title'
 import { leaf, flame, trophy, star } from 'ionicons/icons'
 import Card from './Card'
 import { IonIcon } from '@ionic/react'
+import Logout from './firebase/logout'
 const estadisticas = [
     {
         icon: leaf,
@@ -47,7 +48,7 @@ const ProfileStadistics = () => {
 
                 }
             </div>
-
+            <Logout />
         </div>
     )
 }
